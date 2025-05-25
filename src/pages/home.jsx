@@ -14,12 +14,6 @@ const barberService = {
     professionals: [
         'Guilherme',
     ],
-    products: [
-        'Pomada Modeladora Forte - Barba Negra - R$ 35',
-        'Óleo para Barba Premium - Viking Groom - R$ 49',
-        'Shampoo Masculino 2 em 1 - Urban Men - R$ 29',
-        'Balm Pós-Barba Calmante - Don Barbudo - R$ 32'
-    ],
     packages: [
         'Cabelo e Limpeza de Pele - 1h - R$ 55',
         'Cabelo e Barba - 1h e 15 min - R$ 55',
@@ -88,19 +82,21 @@ const tabsCarroussel = [
                     </p>
                 </div>
 
-                <div className="flex space-x-4">
-                    <p className="bg-[#415A77] w-56 inline-block text-center rounded-2xl text-white font-semibold">
+                <div className="flex space-x-4 items-center">
+                    <p className="bg-[#415A77] w-56 text-center flex justify-center items-center rounded-2xl text-white font-semibold h-[52px]">
                         Terça-feira a Sexta-feira
                     </p>
+
                     <div className="flex flex-col space-y-1">
-                        <p className="bg-[#415A77] w-28 inline-block text-center rounded-2xl text-white font-semibold">
+                        <p className="bg-[#415A77] w-28 text-center rounded-2xl text-white font-semibold">
                             09:00 - 12:15
                         </p>
-                        <p className="bg-[#415A77] w-28 inline-block text-center rounded-2xl text-white font-semibold">
+                        <p className="bg-[#415A77] w-28 text-center rounded-2xl text-white font-semibold">
                             13:30 - 20:15
                         </p>
                     </div>
                 </div>
+
 
                 <div className="flex space-x-4">
                     <p className="bg-[#415A77] w-56 inline-block text-center rounded-2xl text-white font-semibold">
@@ -181,7 +177,6 @@ export const Home = () => {
     const tabs = [
         { label: "Serviços", key: "services" },
         { label: "Profissionais", key: "professionals" },
-        { label: "Produtos", key: "products" },
         { label: "Pacotes", key: "packages" },
     ];
 

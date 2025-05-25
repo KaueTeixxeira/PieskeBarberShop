@@ -1,8 +1,13 @@
 import { Facebook, Instagram } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export const Footer = () => {
+    const location = useLocation();
+    const isAboutPage = location.pathname === "/about";
+
+
     return (
-        <footer className="bg-[#E0E1DD] w-full py-10 mt-10">
+        <footer className={`bg-[#E0E1DD] w-full py-10 ${!isAboutPage ? "mt-10" : ""}`}>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
                 <div className="flex flex-col justify-between space-y-4 items-center">
                     <div>
@@ -15,7 +20,7 @@ export const Footer = () => {
                 <div className="flex flex-col items-center justify-between space-y-4">
                     <div>
                         <img
-                            src="/src/assets/images/header/logoSemFundoAjustada.png"
+                            src="/src/assets/images/logoSemFundoAjustada.png"
                             alt="Logo da cidade"
                             className="h-16 object-contain"
                         />

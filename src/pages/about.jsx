@@ -1,121 +1,85 @@
-import { useEffect, useState } from 'react';
-import corte1 from '../assets/cortes/corte1.png';
-import corte2 from '../assets/cortes/corte2.png';
-import corte3 from '../assets/cortes/corte3.png';
-import corte4 from '../assets/cortes/corte4.png';
+import { CheckCircle, Handshake, Home, Sparkles } from "lucide-react";
 
 export const About = () => {
-  const images = [
-    { src: corte1, alt: 'Corte 1' },
-    { src: corte2, alt: 'Corte 2' },
-    { src: corte3, alt: 'Corte 3' },
-    { src: corte4, alt: 'Corte 4' },
-  ];
+    return (
+        <>
+            <div className="relative w-full mx-auto h-100">
+                <img
+                    src="src/assets/images/SobreNosBG.png"
+                    className="object-cover object-top w-full h-full"
+                    alt="Sobre Nós"
+                />
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
+                <h1 className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold uppercase">
+                    SOBRE NÓS
+                </h1>
+            </div>
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+            <div className="w-full mx-auto h-80 flex">
+                <div className="w-1/2 flex items-center justify-center p-8">
+                    <p className="text-lg text-gray-700 text-justify leading-relaxed">
+                        Oferecemos uma ampla variedade de serviços, incluindo cortes de cabelo, barba, tratamentos capilares e cuidados personalizados. Nosso ambiente é descontraído e acolhedor, pensado para que você possa relaxar, se sentir confortável e aproveitar ao máximo a sua experiência conosco.
+                    </p>
+                </div>
+                <div className="w-1/2 h-full">
+                    <img
+                        className="object-cover w-full h-full"
+                        src="src/assets/images/SobreNos1.png"
+                        alt="Sobre Nós"
+                    />
+                </div>
+            </div>
 
-  useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+            <div className="bg-[#E0E1DD] w-full h-80 flex">
+                <div className="flex-1 flex flex-col items-center justify-center p-4">
+                    <CheckCircle className="w-8 h-8 text-[#415A77] mb-2" />
+                    <h2 className="text-lg font-semibold mb-2">Qualidade</h2>
+                    <p className="text-sm text-gray-600 text-center">
+                        Serviços com excelência, técnicas modernas e produtos de alta qualidade.
+                    </p>
+                </div>
 
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [modalOpen]);
+                <div className="flex-1 flex flex-col items-center justify-center p-4">
+                    <Handshake className="w-8 h-8 text-[#415A77] mb-2" />
+                    <h2 className="text-lg font-semibold mb-2">Atendimento Humanizado</h2>
+                    <p className="text-sm text-gray-600 text-center">
+                        Valorizamos a escuta atenta e o atendimento personalizado.
+                    </p>
+                </div>
+
+                <div className="flex-1 flex flex-col items-center justify-center p-4">
+                    <Home className="w-8 h-8 text-[#415A77] mb-2" />
+                    <h2 className="text-lg font-semibold mb-2">Ambiente Acolhedor</h2>
+                    <p className="text-sm text-gray-600 text-center">
+                        Um espaço confortável e descontraído para relaxar e se cuidar.
+                    </p>
+                </div>
+
+                <div className="flex-1 flex flex-col items-center justify-center p-4">
+                    <Sparkles className="w-8 h-8 text-[#415A77] mb-2" />
+                    <h2 className="text-lg font-semibold mb-2">Tradição e Inovação</h2>
+                    <p className="text-sm text-gray-600 text-center">
+                        Unimos tradição e tendências para garantir estilo e autenticidade.
+                    </p>
+                </div>
+            </div>
 
 
-  const openModal = (index) => {
-    setCurrentIndex(index);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
-  };
-
-  const nextImage = () => {
-    setCurrentIndex((currentIndex + 1) % images.length);
-  };
-
-  return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <div>
-        <img
-          src={images[0].src}
-          alt={images[0].alt}
-          className="w-full h-auto rounded-lg shadow-lg object-cover cursor-pointer"
-          onClick={() => openModal(0)}
-        />
-      </div>
-
-      <div className="flex flex-wrap gap-4 mt-4">
-        {images.slice(1).map(({ src, alt }, i) => (
-          <img
-            key={alt}
-            src={src}
-            alt={alt}
-            className="flex-grow flex-shrink basis-[30%] h-48 rounded-lg shadow-md border border-gray-200 object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
-            onClick={() => openModal(i + 1)}
-          />
-        ))}
-      </div>
-
-      {modalOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
-          onClick={closeModal}
-        >
-          <div
-            className="relative max-w-3xl max-h-[80vh] p-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={images[currentIndex].src}
-              alt={images[currentIndex].alt}
-              className="max-w-full max-h-[70vh] rounded-lg shadow-lg object-contain"
-            />
-
-            <button
-              onClick={closeModal}
-              className="absolute top-3 right-5 cursor-pointer text-white text-3xl font-bold hover:text-gray-300"
-              aria-label="Fechar modal"
-            >
-              &times;
-            </button>
-
-            <button
-              onClick={prevImage}
-              className="absolute top-1/2 left-5 cursor-pointer transform -translate-y-1/2 text-white text-3xl font-bold hover:text-gray-300"
-              aria-label="Imagem anterior"
-            >
-              &#10094;
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute top-1/2 right-5 cursor-pointer transform -translate-y-1/2 text-white text-3xl font-bold hover:text-gray-300"
-              aria-label="Próxima imagem"
-            >
-              &#10095;
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div className="mt-8">
-        <script src="https://static.elfsight.com/platform/platform.js" async></script>
-        <div
-          className="elfsight-app-93815d72-3c0d-4714-8f2f-bf6cd225d48a"
-          data-elfsight-app-lazy
-        ></div>
-      </div>
-    </div>
-  );
-};
+            <div className="w-full h-80 flex">
+                <div className="w-1/2 h-full">
+                    <img
+                        className="object-cover w-full h-full"
+                        src="src/assets/images/SobreNos1.png"
+                        alt="Sobre Nós"
+                    />
+                </div>
+                <div className="w-1/2 flex flex-col items-center justify-center p-8">
+                    <h1 className="text-2xl font-bold mb-4 text-center">Nossa Missão</h1>
+                    <p className="text-lg text-gray-700 text-justify leading-relaxed">
+                        Mais do que um simples serviço, buscamos proporcionar momentos de bem-estar e autoestima para cada cliente. Prezamos pela excelência, atenção aos detalhes e atendimento humanizado, criando um espaço onde tradição e modernidade se encontram.
+                    </p>
+                </div>
+            </div>
+        </>
+    )
+}
