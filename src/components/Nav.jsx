@@ -4,9 +4,9 @@ import { cn } from "../utils/cn";
 
 export const Nav = () => {
 
-    const whatsappNumber = "5547997863502";
-    const whatsappMessage = "Olá, gostaria de agendar um corte!";
-    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    // const whatsappNumber = "5547997863502";
+    // const whatsappMessage = "Olá, gostaria de agendar um corte!";
+    const linkAppDeAgendamento = `https://www.fresha.com/pt/a/pieske-barber-shop-santa-catarina-rua-pastor-albert-schneider-1412-j28fxh90/booking?menu=true&pId=1470479`;
 
     return (
         <nav className="bg-[#E0E1DD] shadow p-4 flex justify-between items-center">
@@ -67,7 +67,7 @@ export const Nav = () => {
                 </div>
 
                 <a
-                    href={whatsappLink}
+                    href={linkAppDeAgendamento}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#415A77] text-white px-4 py-3 rounded-lg text-sm hover:bg-[#778DA9] transition cursor-pointer"

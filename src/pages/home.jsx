@@ -1,18 +1,19 @@
 import '../App.css'
 import * as React from "react"
-import { ChevronLeft, ChevronRight, Wifi, Car, Accessibility, Baby, MapPin, Clock, CreditCard, Phone, Instagram, Facebook, Mail } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Wifi, Car, Accessibility, Baby, MapPin, Clock, CreditCard, Phone, Instagram, Mail, AirVent, Beer } from 'lucide-react'
+
+const whatsappNumber = "4784553993";
+const whatsappMessage = "Olá, gostaria de agendar um corte!";
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
 const barberService = {
     services: [
-        "Cabelo - 30 min - R$ 30",
+        "Cabelo - 45 min - R$ 30",
         "Cabelo Social - 30 min - R$ 30",
         "Barba - 30 min - R$ 30",
         "Sobrancelha - 10 min - R$ 10 ",
         "Limpeza de Pele - 30 min - R$ 25",
         "Depilação Cera Nariz e Orelha - 15 min - R$ 15",
-    ],
-    professionals: [
-        'Guilherme',
     ],
     packages: [
         'Cabelo e Limpeza de Pele - 1h - R$ 55',
@@ -26,7 +27,7 @@ const amenities = [
     {
         key: "wifi",
         icon: Wifi,
-        label: "Wi-Fi gratuito",
+        label: "Wi-Fi",
         description: "Conexão de alta velocidade disponível para todos os clientes.",
     },
     {
@@ -36,16 +37,16 @@ const amenities = [
         description: "Vagas exclusivas para clientes ao lado do salão.",
     },
     {
-        key: "accessibility",
-        icon: Accessibility,
-        label: "Acessibilidade",
-        description: "Ambiente adaptado para pessoas com mobilidade reduzida.",
+        key: "air-vent",
+        icon: AirVent,
+        label: "Ambiente Climatizado",
+        description: "Desfrute de um ambiente confortável com ar-condicionado.",
     },
     {
-        key: "baby",
-        icon: Baby,
-        label: "Espaço Kids",
-        description: "Área infantil segura e divertida para seus filhos.",
+        key: "beer",
+        icon: Beer,
+        label: "Chopp Gelado",
+        description: "Aproveite um chopp gelado enquanto aguarda seu atendimento.",
     },
 ];
 
@@ -132,18 +133,13 @@ const tabsCarroussel = [
                         <Instagram className=" transition" />
                     </a>
                 </div>
-                <div className='p-3.5 rounded-full bg-[#778DA9] hover:bg-[#1877F2] cursor-pointer transition'>
-                    <a href="https://facebook.com/barbeariaexemplo" target="_blank" rel="noopener noreferrer">
-                        <Facebook className="transition" />
-                    </a>
-                </div>
                 <div className='p-3.5 rounded-full bg-[#778DA9] hover:bg-[#2A9D8F] cursor-pointer transition'>
-                    <a href="tel:+5547997863502">
+                    <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                         <Phone className="transition" />
                     </a>
                 </div>
                 <div className='p-3.5 rounded-full bg-[#778DA9] hover:bg-[#F4A261] cursor-pointer transition'>
-                    <a href="mailto:contato@barbearia.com">
+                    <a href="mailto:Pieskebarbershop@gmail.com">
                         <Mail className="transition" />
                     </a>
                 </div>
@@ -152,10 +148,15 @@ const tabsCarroussel = [
     }
 ];
 
+const images = [
+    "src/assets/images/foto-frente-perto.jpeg",
+    "src/assets/images/foto-interior.jpeg",
+];
+
 export const Home = () => {
 
+    const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
     const [activeTab, setActiveTab] = React.useState("services");
-    const [selectedAmenity, setSelectedAmenity] = React.useState(amenities[0].key);
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [isWide, setIsWide] = React.useState(window.innerWidth >= 900);
 
@@ -173,10 +174,18 @@ export const Home = () => {
         setActiveIndex((prev) => (prev === tabsCarroussel.length - 1 ? 0 : prev + 1));
     };
 
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) =>
+                prev === images.length - 1 ? 0 : prev + 1
+            );
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const tabs = [
         { label: "Serviços", key: "services" },
-        { label: "Profissionais", key: "professionals" },
         { label: "Pacotes", key: "packages" },
     ];
 
@@ -187,48 +196,43 @@ export const Home = () => {
                     <div className="flex space-x-4 px-[90px] mt-6">
                         <div className="flex flex-col w-3/4 space-y-4">
                             <div className="relative h-136 overflow-hidden">
-                                <img
-                                    src="src/assets/images/foto-frente-barber.png"
-                                    alt="Banner da Barbearia"
-                                    className="object-cover w-full h-full rounded-xl"
-                                />
+                                {images.map((src, index) => (
+                                    <img
+                                        key={index}
+                                        src={src}
+                                        alt={`Slide ${index}`}
+                                        className={`object-[center_90%] rounded-xl absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                                    />
+                                ))}
                             </div>
 
-                            <div className="bg-white p-4">
-                                <h2 className="font-semibold mb-4 text-[#0D1B2A]">Comodidades</h2>
+                            <div className="bg-white p-4  rounded-xl">
+                                <h2 className="font-semibold mb-4 text-[#0D1B2A] text-center">Comodidades</h2>
                                 <div className="flex space-x-3">
                                     {amenities.map(({ key, icon: Icon, label }) => (
-                                        <button
+                                        <div
                                             key={key}
-                                            onClick={() => setSelectedAmenity(key)}
-                                            className={`py-4 flex-1 rounded-lg border text-center transition cursor-pointer ${selectedAmenity === key
-                                                ? "bg-[#415A77] border-[#E0E1DD]"
-                                                : "bg-[#E0E1DD] border-transparent"
+                                            className={`py-4 flex-1 rounded-xl border text-center transition cursor-pointer 
+                                                bg-[#E0E1DD] border-transparent
                                                 }`}
                                         >
                                             <Icon
-                                                className={`mx-auto mb-1 w-5 h-5 ${selectedAmenity === key ? "text-[#E0E1DD]" : "text-[#0D1B2A]"
+                                                className={`mx-auto mb-1 w-5 h-5 text-[#0D1B2A]
                                                     }`}
                                             />
                                             <span
-                                                className={`text-sm ${selectedAmenity === key ? "text-[#E0E1DD]" : "text-[#0D1B2A]"
+                                                className={`text-sm text-[#0D1B2A]
                                                     }`}
                                             >
                                                 {label}
                                             </span>
-                                        </button>
+                                        </div>
                                     ))}
                                 </div>
-
-                                {selectedAmenity && (
-                                    <div className="mt-4 text-sm bg-[#E0E1DD] p-3 rounded text-[#0D1B2A]">
-                                        {amenities.find((item) => item.key === selectedAmenity)?.description}
-                                    </div>
-                                )}
                             </div>
 
-                            <div className={`mt-2 bg-white shadow-inner`}>
-                                <div className="flex text-sm border-b border-gray-300">
+                            <div className={`mt-2 bg-white shadow-inner rounded-xl p-2 mb-6` }>
+                                <div className="flex text-sm border-b border-gray-300 ">
                                     {tabs.map((tab) => (
                                         <button
                                             key={tab.key}
@@ -270,13 +274,12 @@ export const Home = () => {
                                 ))}
                             </div>
                         </div>
-
                     </div>
                     :
                     <>
                         <div className="relative h-64 overflow-hidden">
                             <img
-                                src="src/assets/images/foto-frente-barber.png"
+                                src="src/assets/images/foto-frente-perto.jpeg"
                                 alt="Banner da Barbearia"
                                 className="object-cover w-full h-full"
                             />
@@ -316,35 +319,17 @@ export const Home = () => {
                             <h2 className="font-semibold mb-4 text-[#0D1B2A]">Comodidades</h2>
                             <div className="flex space-x-3">
                                 {amenities.map(({ key, icon: Icon, label }) => (
-                                    <button
+                                    <div
                                         key={key}
-                                        onClick={() => setSelectedAmenity(key)}
-                                        className={`flex-1 py-4 rounded-lg border text-center transition cursor-pointer ${selectedAmenity === key
-                                            ? "bg-[#415A77] border-[#E0E1DD]"
-                                            : "bg-[#E0E1DD] border-transparent"
-                                            }`}
+                                        className={`flex-1 py-4 rounded-xl border text-center transition cursor-pointer
+                                            bg-[#E0E1DD] border-transparent }`}
                                     >
-                                        <Icon className={`mx-auto mb-1 w-5 h-5 
-                ${selectedAmenity === key
-                                                ? "text-[#E0E1DD]"
-                                                : "text-[#0D1B2A]"
-                                            }`} />
-                                        <span className={`text-xs
-              ${selectedAmenity === key
-                                                ? "text-[#E0E1DD]"
-                                                : "text-[#0D1B2A]"
-                                            }`}>{label}</span>
-                                    </button>
+                                        <Icon className={`mx-auto mb-1 w-5 h-5 text-[#0D1B2A]}`} />
+                                        <span className={`text-xs text-[#0D1B2A] }`}>{label}</span>
+                                    </div>
                                 ))}
                             </div>
 
-                            {selectedAmenity && (
-                                <div className="mt-4 text-sm bg-[#E0E1DD] p-3 rounded text-[#0D1B2A]">
-                                    {
-                                        amenities.find((item) => item.key === selectedAmenity)?.description
-                                    }
-                                </div>
-                            )}
                         </div>
                         <div className={`mt-2 bg-white shadow-inner ${isWide ? "mx-16 " : ""}`}>
                             <div className="flex text-sm border-b border-gray-300">

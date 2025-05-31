@@ -1,4 +1,4 @@
-import { Facebook, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 export const Footer = () => {
@@ -38,14 +38,6 @@ export const Footer = () => {
                                 className="p-3.5 rounded-full bg-[#778DA9] hover:bg-[#E63946] transition-colors"
                             >
                                 <Instagram className="w-5 h-5 text-white" />
-                            </a>
-                            <a
-                                href="https://facebook.com/barbeariaexemplo"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-3.5 rounded-full bg-[#778DA9] hover:bg-[#1877F2] transition-colors"
-                            >
-                                <Facebook className="w-5 h-5 text-white" />
                             </a>
                         </div>
                     </div>

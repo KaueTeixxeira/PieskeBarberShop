@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import corte1 from '../assets/cortes/corte1.png';
-import corte2 from '../assets/cortes/corte2.png';
-import corte3 from '../assets/cortes/corte3.png';
-import corte4 from '../assets/cortes/corte4.png';
+import corte1 from '../assets/cortes/corte1.jpg';
+import corte2 from '../assets/cortes/corte2.jpg';
+import corte3 from '../assets/cortes/corte3.jpg';
+import corte4 from '../assets/cortes/corte4.jpg';
 
 export const Portfolio = () => {
   const images = [
@@ -14,6 +14,8 @@ export const Portfolio = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
 
   useEffect(() => {
     if (modalOpen) {
@@ -45,15 +47,32 @@ export const Portfolio = () => {
     setCurrentIndex((currentIndex + 1) % images.length);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) =>
+        prev === images.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="p-4 max-w-6xl mx-auto">
-      <div>
-        <img
-          src={images[0].src}
-          alt={images[0].alt}
-          className="w-full h-auto rounded-lg shadow-lg object-cover cursor-pointer"
-          onClick={() => openModal(0)}
-        />
+      <div className="relative w-full max-w-4xl mx-auto h-[600px] rounded-lg shadow-lg overflow-hidden">
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img.src}
+            alt={img.alt}
+            onClick={() => openModal(index)}
+            className={`
+            absolute inset-0 w-full h-full cursor-pointer
+            object-cover object-[center_80%] transition-opacity duration-1000 ease-in-out
+            ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}
+          `}
+          />
+        ))}
       </div>
 
       <div className="flex flex-wrap gap-4 mt-4">
