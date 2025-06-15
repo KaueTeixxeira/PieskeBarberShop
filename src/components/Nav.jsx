@@ -56,11 +56,9 @@ export const Nav = () => {
                     Sobre
                 </NavLink>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-4 space-y-2 sm:space-y-0">
                 <div
-                    className={`px-4 py-2 rounded-lg  font-semibold ${isOpen() === "Aberto"
-                        ? "text-green-500"
-                        : "text-red-500"
+                    className={`hidden sm:block px-4 py-2 rounded-lg font-semibold ${isOpen() === "Aberto" ? "text-green-500" : "text-red-500"
                         }`}
                 >
                     {isOpen()}
