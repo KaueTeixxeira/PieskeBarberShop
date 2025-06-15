@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { isOpen } from "../utils/isOpen";
 import { cn } from "../utils/cn";
-
+import logo from "../assets/images/LogoSemFundoAjustada.png"
 export const Nav = () => {
 
     // const whatsappNumber = "5547997863502";
@@ -12,7 +12,7 @@ export const Nav = () => {
         <nav className="bg-[#E0E1DD] shadow p-4 flex justify-between items-center">
             <div className="flex items-center space-x-4">
                 <img
-                    src="/src/assets/images/logoSemFundoAjustada.png"
+                    src={logo}
                     alt="Logo da cidade"
                     className="h-10 object-cover"
                 />

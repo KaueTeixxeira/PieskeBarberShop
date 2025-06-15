@@ -1,6 +1,8 @@
 import '../App.css'
 import * as React from "react"
 import { ChevronLeft, ChevronRight, Wifi, Car, Accessibility, Baby, MapPin, Clock, CreditCard, Phone, Instagram, Mail, AirVent, Beer } from 'lucide-react'
+import fotoFrente from '../assets/images/foto-frente-perto.jpeg'
+import fotoInterior from '../assets/images/foto-interior.jpeg'
 
 const whatsappNumber = "4784553993";
 const whatsappMessage = "Olá, gostaria de agendar um corte!";
@@ -149,8 +151,8 @@ const tabsCarroussel = [
 ];
 
 const images = [
-    "src/assets/images/foto-frente-perto.jpeg",
-    "src/assets/images/foto-interior.jpeg",
+    fotoFrente,
+    fotoInterior
 ];
 
 export const Home = () => {
@@ -196,10 +198,10 @@ export const Home = () => {
                     <div className="flex space-x-4 px-[90px] mt-6">
                         <div className="flex flex-col w-3/4 space-y-4">
                             <div className="relative h-136 overflow-hidden">
-                                {images.map((src, index) => (
+                                {images.map((image, index) => (
                                     <img
                                         key={index}
-                                        src={src}
+                                        src={image}
                                         alt={`Slide ${index}`}
                                         className={`object-[center_90%] rounded-xl absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
                                     />
@@ -278,11 +280,14 @@ export const Home = () => {
                     :
                     <>
                         <div className="relative h-64 overflow-hidden">
-                            <img
-                                src="src/assets/images/foto-frente-perto.jpeg"
-                                alt="Banner da Barbearia"
-                                className="object-cover w-full h-full"
-                            />
+                             {images.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Slide ${index}`}
+                                        className={`object-[center_90%]  absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                                    />
+                                ))}
                         </div>
                         <div className="bg-[#0D1B2A] text-white h-[220px] relative">
                             <div className="flex items-center justify-center mb-6 mt-3">

@@ -1,11 +1,14 @@
 import { CheckCircle, Handshake, Home, Sparkles } from "lucide-react";
+import sobreNos from '../assets/images/SobreNosBG.png'
+import sobreNos1 from '../assets/images/SobreNos1.png'
+import sobreNos2 from '../assets/images/SobreNos2.png'
 
 export const About = () => {
     return (
         <>
             <div className="relative w-full h-100">
                 <img
-                    src="src/assets/images/SobreNosBG.png"
+                    src={sobreNos}
                     className="object-cover object-top w-full h-full"
                     alt="Sobre Nós"
                 />
@@ -15,7 +18,7 @@ export const About = () => {
                 </h1>
             </div>
 
-            <div className="lg:px-[90px] px-0">
+            <div className="lg:px-[90px] px-0 mt-10">
                 <div className="w-full mx-auto h-80 flex">
                     <div className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8">
                         <p className="text-base md:text-lg text-gray-700 text-justify leading-relaxed">
@@ -25,13 +28,13 @@ export const About = () => {
                     <div className="w-1/2 h-full">
                         <img
                             className="object-cover w-full h-full"
-                            src="src/assets/images/SobreNos1.png"
+                            src={sobreNos1}
                             alt="Sobre Nós"
                         />
                     </div>
                 </div>
 
-                <div className="bg-[#E0E1DD] w-full flex flex-wrap">
+                <div className="bg-[#E0E1DD] w-full flex flex-wrap mt-10">
                     <div className="w-full sm:w-1/2 lg:w-1/4 flex flex-col items-center justify-center p-4">
                         <CheckCircle className="w-8 h-8 text-[#415A77] mb-2" />
                         <h2 className="text-lg font-semibold mb-2">Qualidade</h2>
@@ -66,11 +69,11 @@ export const About = () => {
                 </div>
 
 
-                <div className="w-full h-80 flex">
+                <div className="w-full h-80 flex mt-10">
                     <div className="w-1/2 h-full">
                         <img
                             className="object-cover object-top w-full h-full"
-                            src="src/assets/images/SobreNos2.png"
+                            src={sobreNos2}
                             alt="Sobre Nós"
                         />
                     </div>
